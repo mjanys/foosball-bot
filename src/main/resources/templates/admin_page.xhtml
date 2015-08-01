@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <!--@thymesVar id="allPlayers" type="java.util.List<cz.janys.foosballbot.entity.PlayerEntity>"-->
+    <!--@thymesVar id="joinedPlayers" type="java.util.Collection<cz.janys.foosballbot.dto.JoinedPlayer>"-->
+    <head>
+        <title>Foosball - admin</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+    <ul>
+        <li th:each="player : ${allPlayers}">
+            <span th:text="${player.getJabber()}"
+                  th:style="${joinedPlayers.contains(player.getJabber())} ? 'color: green' : 'color: red'"/>
+        </li>
+    </ul>
+    </body>
+</html>
