@@ -1,0 +1,35 @@
+package cz.janys.foosballbot.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+
+/**
+ * @author Martin Janys
+ */
+@Configuration
+@EnableWebMvcSecurity
+@Import(CredentialsSetting.class)
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private CredentialsSetting credentialsSetting;
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests().anyRequest().authenticated();
+        http.httpBasic().realmName("foosball");
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser(credentialsSetting.getUsername())
+                .password(credentialsSetting.getPassword())
+                .roles("ADMIN");
+    }
+}

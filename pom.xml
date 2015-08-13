@@ -5,7 +5,7 @@
 
 	<groupId>cz.janys</groupId>
 	<artifactId>foosball-bot</artifactId>
-	<version>1.1</version>
+	<version>1.2</version>
 	<packaging>jar</packaging>
 
 	<name>foosball-bot</name>
@@ -51,10 +51,21 @@
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
         <dependency>
 			<groupId>cz.janys</groupId>
 			<artifactId>jabberbot</artifactId>
-			<version>1.0</version>
+			<version>1.1</version>
 		</dependency>
 
 		<dependency>

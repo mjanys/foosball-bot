@@ -3,17 +3,38 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
     <!--@thymesVar id="allPlayers" type="java.util.List<cz.janys.foosballbot.entity.PlayerEntity>"-->
-    <!--@thymesVar id="joinedPlayers" type="java.util.Collection<cz.janys.foosballbot.dto.JoinedPlayer>"-->
+    <!--@thymesVar id="joinedPlayers" type="java.util.Collection<java.lang.String>"-->
     <head>
         <title>Foosball - admin</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     </head>
     <body>
+    <h1>Players</h1>
+    <h2>List:</h2>
     <ul>
         <li th:each="player : ${allPlayers}">
-            <span th:text="${player.getJabber()}"
-                  th:style="${joinedPlayers.contains(player.getJabber())} ? 'color: green' : 'color: red'"/>
+            <span th:text="${player.jabber}"
+                  th:style="${joinedPlayers.contains(player.jabber)} ? 'color: green' : 'color: red'"/>
+            <a th:href="@{/removePlayer(id=${player.id})}">Unregister</a>
         </li>
     </ul>
+
+    <h2>Joined:</h2>
+    <span th:text="${joinedPlayers.size()} + '/' + ${foosballSize}"/>
+    <ul>
+        <li th:each="player : ${joinedPlayers}">
+            <span th:text="${player}"
+                  th:style="'color: green'"/>
+        </li>
+    </ul>
+
+    <h2>Add player:</h2>
+    <form action="#" th:action="@{/addPlayer}" method="post">
+        <label>
+            Jabber:
+            <input type="text" name="player"/>
+        </label>
+        <input type="submit" />
+    </form>
     </body>
 </html>

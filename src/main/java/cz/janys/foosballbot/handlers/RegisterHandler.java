@@ -29,7 +29,7 @@ public class RegisterHandler extends AbstractFoosballHandler {
 
     @Override
     public Message<?> doHandleMessage(JabberMessage message, ConversationScope<String, Object> conversationScope) throws MessagingException {
-        JabberMessageLogger.log(log, message, "FOOSBALL");
+        JabberMessageLogger.log(log, message, "REGISTER");
         String playerJabber = MessageUtils.parseJabber(message.from());
         if (save(playerJabber)) {
             return new GenericMessage<>(Messages.format(Messages.REGISTERED, playerJabber));

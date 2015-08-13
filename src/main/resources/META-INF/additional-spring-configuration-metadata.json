@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "foosball.credentials.username",
+      "type": "java.lang.String",
+      "description": "foosball.credentials.username."
+    },
+    {
+      "name": "foosball.credentials.password",
+      "type": "java.lang.String",
+      "description": "foosball.credentials.password."
+    }
+  ]
+}

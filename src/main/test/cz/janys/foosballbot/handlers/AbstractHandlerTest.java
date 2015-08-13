@@ -1,5 +1,6 @@
 package cz.janys.foosballbot.handlers;
 
+import cz.janys.foosballbot.config.*;
 import cz.janys.foosballbot.repository.PlayerRepository;
 import cz.janys.foosballbot.util.MessageUtils;
 import cz.janys.jabberbot.ConversationScope;
@@ -32,14 +33,16 @@ import static org.mockito.Mockito.doAnswer;
  */
 @SuppressWarnings("SpringJavaAutowiringInspection")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {
-        "classpath:spring-context/jpa-config.xml",
-        "classpath:jabberbot-spring-context-mock.xml",
-        "classpath*:spring-context/jabberbot-spring-context-ext.xml"
-})
 @TestPropertySource(locations = {
-        "/database-test-settings.properties",
-        "/foosball-test.properties"
+        "classpath:/database-test-settings.properties",
+        "classpath:/foosball-test.properties"
+})
+@ContextConfiguration(classes = {
+        JabberbotMockConfig.class,
+        HandlersConfig.class,
+        DatabaseConfig.class,
+        JpaConfig.class,
+        JpaRepositoryConfig.class
 })
 public abstract class AbstractHandlerTest {
 
